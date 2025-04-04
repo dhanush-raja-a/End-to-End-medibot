@@ -7,7 +7,7 @@ from langchain_pinecone import PineconeVectorStore
 from dotenv import load_dotenv
 load_dotenv()
 
-data=load_pdf_file(data="data/")
+data=load_pdf_file(data="/Users/dhanushrajaa/Desktop/medibot/End-to-End-medibot/data")
 chunk=text_split(data)
 embeddings=download_hugging_face_embeddings()
 PINCONE_API_KEY=os.environ.get("PINCONE_API_KEY")

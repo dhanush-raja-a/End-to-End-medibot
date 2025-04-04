@@ -30,7 +30,7 @@ retriver=data_to_model.as_retriever(search_type="similarity", search_kwargs={"k"
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
-    model="llama3-groq-70b-8192-tool-use-preview",
+    model="llama-3.3-70b-versatile",
     temperature=0.3,
     max_retries=2,)
 Prompt= ChatPromptTemplate.from_messages(
@@ -55,5 +55,13 @@ def chat():
     print("response :", response["answer"])
     return str(response["answer"])
 
-if __name__=='__main__':
-    app.run(host="0.0.0.0", port=8080,debug=True)
+# Add this after app initialization
+if os.environ.get('FLASK_ENV') == 'production':
+    app.config['DEBUG'] = False
+else:
+    app.config['DEBUG'] = True
+
+# Modify the last part
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 8081))
+    app.run(host="0.0.0.0", port=port)

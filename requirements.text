@@ -1,4 +1,0 @@
-flask
-pypdf
-langchain_community
--e .
